@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "new-app": {
+    "lucknow-airport-survey": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/new-app",
+            "outputPath": "dist/lucknow-airport-survey",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -46,8 +46,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1mb",
+                  "maximumError": "4mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "new-app:build:production"
+              "browserTarget": "lucknow-airport-survey:build:production"
             },
             "development": {
-              "browserTarget": "new-app:build:development"
+              "browserTarget": "lucknow-airport-survey:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "new-app:build"
+            "browserTarget": "lucknow-airport-surveyp:build"
           }
         },
         "test": {
