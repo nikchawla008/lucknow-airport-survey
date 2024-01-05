@@ -12,7 +12,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatRadioModule} from "@angular/material/radio";
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
-import { registerLocaleData } from '@angular/common';
+import {NgOptimizedImage, registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en';
 import { HttpClientModule } from '@angular/common/http';
 import {NzCardModule} from "ng-zorro-antd/card";
@@ -24,6 +24,7 @@ import {NzSelectModule} from "ng-zorro-antd/select";
 import {NzTreeSelectModule} from "ng-zorro-antd/tree-select";
 import {NzInputNumberModule} from "ng-zorro-antd/input-number";
 import {NzSpaceModule} from "ng-zorro-antd/space";
+import {NzModalModule} from "ng-zorro-antd/modal";
 
 registerLocaleData(en);
 
@@ -52,6 +53,8 @@ registerLocaleData(en);
     NzTreeSelectModule,
     NzInputNumberModule,
     NzSpaceModule,
+    NzModalModule,
+    NgOptimizedImage,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }

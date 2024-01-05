@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NzTreeNodeOptions} from "ng-zorro-antd/tree";
+import {NzModalService} from "ng-zorro-antd/modal";
 
 const NO_WHITE_SPACES_ONLY = (control: any) => {
   if (control.value && control.value.trim() != '') {
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit {
   title = 'new-app';
 
   // Stepper
-  step: number = 11;
+  step: number = 1;
   MAX_STEP: number = 17
 
 
@@ -359,7 +360,7 @@ export class AppComponent implements OnInit {
   };
 
   personalInformationForm = new FormGroup({
-    name: new FormControl(null, [Validators.required, NO_WHITE_SPACES_ONLY]),
+    // name: new FormControl(null, [Validators.required, NO_WHITE_SPACES_ONLY]),
     q1: new FormControl(null, [Validators.required]),
     q2: new FormControl(null, [Validators.required]),
     q3: new FormControl(null, [Validators.required]),
@@ -425,8 +426,9 @@ export class AppComponent implements OnInit {
 
   })
 
-
-  constructor() {
+  constructor(
+    private modal: NzModalService
+  ) {
     this.q10 = this.convertToNzTreeNodeOptions(this.q10Options)
     this.applyValidations()
   }
@@ -490,14 +492,11 @@ export class AppComponent implements OnInit {
     }
     const formData = this.personalInformationForm.getRawValue();
     if(formData.q1! === 15) {
-      alert('End Form here')
-      this.goToStep1()
+      this.openSurveyEndModal()
     } else if (formData.q2 === 1 || formData.q2 === 6) {
-      alert('End Form here')
-      this.goToStep1()
+      this.openSurveyEndModal();
     } else if (formData.q3 === 1 && formData.q4 === 1) {
-      alert('End Form here')
-      this.goToStep1()
+      this.openSurveyEndModal();
     } else {
       const nextStep =  this.step + 1
       if(nextStep > this.MAX_STEP) {
@@ -534,7 +533,8 @@ export class AppComponent implements OnInit {
   get disableNext() {
 
     switch (this.step) {
-      case 1: return this.personalInformationFormControls['name'].invalid
+      // case 1: return this.personalInformationFormControls['name'].invalid || false
+      case 1: return false
       case 2: return this.personalInformationFormControls['q1'].invalid
       case 3: return this.personalInformationFormControls['q2'].invalid
       case 4: return this.personalInformationFormControls['q3'].invalid
@@ -682,6 +682,21 @@ export class AppComponent implements OnInit {
         }
       }
     })
+  }
+
+  closeSurveyEndModal() {
+    this.goToStep1()
+    // this.surveyEndModal = false;
+  }
+
+  openSurveyEndModal() {
+    this.modal.info({
+      nzTitle: 'Thank you for taking part in this survey!',
+      nzOkText: 'Close',
+      nzOkType: 'primary',
+      nzOnOk: () => this.closeSurveyEndModal(),
+      nzClosable: false,
+    });
   }
 
 }
