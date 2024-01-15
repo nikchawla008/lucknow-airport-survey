@@ -68,10 +68,17 @@ body {
   padding: 10px;
 }
 
-@media (max-width: 767px) {
+@media screen and (max-width: 767px) {
   .card {
     width: 100vw; /* Full width on mobile */
     height: 100vh; /* Full height on mobile */
     margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 767px){
+  .card {
+    width: 700px; /* Fixed width for desktop */
+    height: 700px; /* Fixed height for desktop */
   }
 }
