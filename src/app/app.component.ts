@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NzTreeNodeOptions} from "ng-zorro-antd/tree";
 import {NzModalService} from "ng-zorro-antd/modal";
+import {SubmissionService} from "./services/submission.service";
 
 const NO_WHITE_SPACES_ONLY = (control: any) => {
   if (control.value && control.value.trim() != '') {
@@ -427,7 +428,8 @@ export class AppComponent implements OnInit {
   })
 
   constructor(
-    private modal: NzModalService
+    private modal: NzModalService,
+    public submissionService: SubmissionService,
   ) {
     this.q10 = this.convertToNzTreeNodeOptions(this.q10Options)
     this.applyValidations()
@@ -500,10 +502,20 @@ export class AppComponent implements OnInit {
     } else {
       const nextStep =  this.step + 1
       if(nextStep > this.MAX_STEP) {
-        const formValue = this.personalInformationForm.value;
-        console.log('submit')
-        formValue.q10 = getCars(formValue)
-        console.log(formValue)
+        const formValue = this.personalInformationForm.getRawValue();
+        const requestBody = {
+          ...formValue,
+          q10: getCars(formValue)
+        }
+        this.submissionService.submitForm(requestBody).subscribe({
+          next: () => {
+            this.goToStep1();
+          },
+          error: (err) => {
+            console.log(err)
+          }
+        })
+
       } else {
         this.step = nextStep > this.MAX_STEP ? this.MAX_STEP : nextStep;
       }
