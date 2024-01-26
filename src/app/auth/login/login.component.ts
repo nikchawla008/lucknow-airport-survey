@@ -36,8 +36,6 @@ export class LoginComponent {
   }
 
   submitLogin() {
-    console.log('Submit')
-
     if(this.loginForm.valid) {
       const requestBody = {
         ...this.loginForm.getRawValue()
