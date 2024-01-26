@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backendUrl: 'http://localhost:3000'
+  backendUrl: 'https://lucknow-backend.onrender.com/'
 };
