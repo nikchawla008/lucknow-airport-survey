@@ -25,6 +25,7 @@ app-root {
   width: 100%;
   @media screen and (max-width: 767px) {
     height: calc(100% - 80px);
+    background-image: none
   }
 }
 
@@ -35,6 +36,25 @@ app-root {
   margin: 20px auto; /* Center the card on desktop */
   border: 1px solid #ccc;
   overflow: hidden; /* Hide content overflow on desktop */
+
+
+  @media screen and (max-height: 980px) {
+    height: 700px;
+  }
+
+
+  @media screen and (max-width: 767px) {
+    width: 100vw; /* Full width on mobile */
+    height: calc(100vh - 80px);
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 1200px) and (min-width: 767px){
+    width: 700px; /* Fixed width for tablet */
+    height: 700px; /* Fixed height for tablet */
+  }
+
+
 }
 
 .card-header {
@@ -80,17 +100,7 @@ app-root {
   padding: 10px;
 }
 
-@media screen and (max-width: 767px) {
-  .card {
-    width: 100vw; /* Full width on mobile */
-    height: calc(100vh - 80px);
-    margin: 0 auto;
-  }
-}
 
-@media screen and (max-width: 1200px) and (min-width: 767px){
-  .card {
-    width: 700px; /* Fixed width for tablet */
-    height: 700px; /* Fixed height for tablet */
-  }
+.mr-2 {
+  margin-right: 1rem;
 }

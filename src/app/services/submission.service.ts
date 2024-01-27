@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {take} from "rxjs";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable, take} from "rxjs";
 import {environment} from "../../environments/environment";
 
 @Injectable({
@@ -17,4 +17,22 @@ export class SubmissionService {
       take(1)
     )
   }
+
+  /**
+   * [GET] API to download Survey data excel
+   */
+  downloadExcel(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'application/xlsx',
+        'Content-Type': 'application/xlsx'
+      }),
+      responseType: 'blob' as 'json'
+    };
+    return this.http.get(`${environment.backendUrl}/survey/fetch/all/data`, httpOptions).pipe(
+      take(1)
+    )
+  }
+
+
 }

@@ -79,7 +79,7 @@ export class AuthService {
    * Check access token API
    */
   checkAccessToken() {
-    return this.http.post(`${environment.backendUrl}/accountManagement/checkAccessToken`, {}).pipe(take(1), map((response: any) => response.account), catchError(err => {
+    return this.http.post(`${environment.backendUrl}/accountManagement/authenticate`, {}).pipe(take(1), map((response: any) => response.account), catchError(err => {
       if(err.error.message) {
         throw err.error.message
       } else {
