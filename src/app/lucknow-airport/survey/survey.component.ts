@@ -416,6 +416,8 @@ export class SurveyComponent {
 
   })
 
+  surveySubmitStarted = false;
+
   constructor(
     private modal: NzModalService,
     public submissionService: SubmissionService,
@@ -730,11 +732,15 @@ export class SurveyComponent {
   }
 
   submitSurveyForm(requestBody: any) {
+    this.surveySubmitStarted = true;
     this.submissionService.submitForm(requestBody).subscribe({
       next: () => {
+        this.surveySubmitStarted = false;
         this.goToStep1();
+        this.toastService.success('Survey Submitted Successfully!!')
       },
       error: (err) => {
+        this.surveySubmitStarted = false;
         console.log(err)
       }
     })

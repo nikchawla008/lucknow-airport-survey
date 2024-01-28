@@ -484,6 +484,13 @@
   <div class="button-section">
     <button [disabled]="step === 1" (click)="prevStep()" nz-button nzType="primary">Back</button>
     <span class="step-counter">{{ step }}/{{ MAX_STEP }}</span>
-    <button (click)="nextStep()" [disabled]="disableNext" nz-button nzType="primary">Next</button>
+    <button (click)="nextStep()" [disabled]="disableNext" [nzLoading]="surveySubmitStarted" nz-button nzType="primary">
+      <ng-container *ngIf="step === MAX_STEP; else showNext" >
+        Submit
+      </ng-container>
+      <ng-template #showNext>
+        Next
+      </ng-template>
+    </button>
   </div>
 </div>
