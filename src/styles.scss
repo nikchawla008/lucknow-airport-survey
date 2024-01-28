@@ -24,8 +24,10 @@ app-root {
   background-image: linear-gradient(140deg, #EADEDB 0%, #BC70A4 50%, #BFD641 75%);
   width: 100%;
   @media screen and (max-width: 767px) {
-    height: calc(100% - 80px);
-    background-image: none
+    max-height: calc(100% - 80px);
+    height: 100%;
+    background-image: none;
+    display: block;
   }
 }
 
@@ -45,7 +47,7 @@ app-root {
 
   @media screen and (max-width: 767px) {
     width: 100vw; /* Full width on mobile */
-    height: calc(100vh - 80px);
+    height: 100%;
     margin: 0 auto;
   }
 
@@ -87,6 +89,10 @@ app-root {
   height: 90%; /* 80% of the card height */
   overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
   padding: 16px 32px;
+  @media screen and (max-width: 767px) {
+    padding: 32px 16px;
+    height: 85%;
+  }
 }
 
 .button-section {
@@ -98,6 +104,11 @@ app-root {
   position: sticky;
   bottom: 0;
   padding: 10px;
+
+  @media screen and (max-width: 767px) {
+    padding: 32px 16px;
+    height: 15%;
+  }
 }
 
 
